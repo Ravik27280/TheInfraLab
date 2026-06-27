@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+Allow: /docs
+Allow: /problems
+Allow: /leaderboard
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /profile
+Disallow: /workspace/
+
+# Explicitly invite AI Search Bots & LLM Web Crawlers to index our study guide and interactive problems
+User-agent: GPTBot
+Allow: /docs
+Allow: /problems
+Allow: /
+Disallow: /dashboard
+
+User-agent: ClaudeBot
+Allow: /docs
+Allow: /problems
+Allow: /
+Disallow: /dashboard
+
+User-agent: Google-Extended
+Allow: /docs
+Allow: /problems
+Allow: /
+Disallow: /dashboard
+
+Sitemap: https://theinfralab.com/sitemap.xml

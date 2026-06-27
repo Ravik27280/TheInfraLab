@@ -1,0 +1,7 @@
+src/features/workspace/WorkspaceLayout.tsx(27,46): error TS6133: 'e' is declared but its value is never read.
+src/pages/LeaderboardPage.tsx(4,31): error TS6133: 'Shield' is declared but its value is never read.
+src/utils/mockData.ts(10,9): error TS2820: Type '"medium"' is not assignable to type '"Easy" | "Medium" | "Hard"'. Did you mean '"Medium"'?
+src/utils/mockData.ts(24,9): error TS2820: Type '"easy"' is not assignable to type '"Easy" | "Medium" | "Hard"'. Did you mean '"Easy"'?
+src/utils/mockData.ts(38,9): error TS2820: Type '"hard"' is not assignable to type '"Easy" | "Medium" | "Hard"'. Did you mean '"Hard"'?
+src/utils/mockData.ts(52,9): error TS2820: Type '"hard"' is not assignable to type '"Easy" | "Medium" | "Hard"'. Did you mean '"Hard"'?
+src/utils/mockData.ts(66,9): error TS2820: Type '"medium"' is not assignable to type '"Easy" | "Medium" | "Hard"'. Did you mean '"Medium"'?

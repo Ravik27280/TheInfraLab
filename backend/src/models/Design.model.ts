@@ -1,0 +1,67 @@
+import mongoose, { Schema, Document } from 'mongoose';
+import { IDesign } from '../types';
+
+interface IDesignDocument extends Omit<IDesign, '_id'>, Document { }
+
+const designSchema = new Schema({
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'User ID is required'],
+    },
+    problemId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Problem',
+        required: [true, 'Problem ID is required'],
+    },
+    name: {
+        type: String,
+    },
+    nodes: {
+        type: [Schema.Types.Mixed],
+        default: [],
+    },
+    edges: {
+        type: [Schema.Types.Mixed],
+        default: [],
+    },
+    evaluationResult: {
+        score: { type: Number, default: 0 },
+        summary: String,
+        requirementAnalysis: [
+            {
+                requirement: String,
+                met: Boolean,
+                comment: String
+            }
+        ],
+        strengths: [String],
+        warnings: [String],
+        errors: [String],
+        suggestions: [String],
+        securityAnalysis: String,
+        scalabilityAnalysis: String
+    },
+    feedback: {
+        type: Schema.Types.Mixed,
+        default: null,
+    },
+}, {
+    timestamps: true,
+    toJSON: {
+        transform: (doc, ret: any) => {
+            ret.id = ret._id.toString();
+            delete ret._id;
+            delete ret.__v;
+            return ret;
+        },
+    },
+});
+
+// Index for faster queries
+designSchema.index({ userId: 1, updatedAt: -1 });
+designSchema.index({ problemId: 1, userId: 1, updatedAt: -1 });
+
+const Design = mongoose.model<IDesignDocument>('Design', designSchema);
+
+export default Design;

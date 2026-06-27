@@ -1,0 +1,368 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode variables - Refined Slate & Pure Glass */
+    --color-bg: 241 245 249;
+    --color-surface: 255 255 255;
+    --color-card: 255 255 255;
+    --color-border: 226 232 240;
+    --color-text-primary: 15 23 42;
+    --color-text-secondary: 71 85 105;
+    --color-primary: 79 70 229; /* Modern Indigo */
+    --color-primary-hover: 99 102 241;
+    --color-success: 16 185 129;
+    --color-warning: 245 158 11;
+    --color-error: 239 68 68;
+  }
+
+  .dark {
+    /* Dark mode variables - Premium Matte Color Scheme */
+    --color-bg: 16 35 42; /* Deep Space Slate #10232A */
+    --color-surface: 61 77 85; /* Muted Steel Slate #3D4D55 */
+    --color-card: 22 22 22; /* Rich Velvet Black #161616 */
+    --color-border: 255 255 255 / 0.05; /* Thin glow border */
+    --color-text-primary: 211 195 185; /* Soft Warm Cream #D3C3B9 */
+    --color-text-secondary: 167 158 156; /* Matte Warm Gray #A79E9C */
+    --color-primary: 181 136 99; /* Matte Copper/Sand #B58863 */
+    --color-primary-hover: 196 152 116; /* Lighter Matte Copper #c49874 */
+    --color-success: 16 185 129;
+    --color-warning: 245 158 11;
+    --color-error: 239 68 68;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text-primary))];
+    font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+  }
+}
+
+@layer components {
+  /* Custom component utilities */
+  .page-container {
+    @apply w-full h-screen flex overflow-hidden relative;
+  }
+
+  .content-area {
+    @apply flex-1 overflow-auto relative z-10;
+  }
+
+  /* Glassmorphism Redefinition of Core components */
+  .card {
+    @apply bg-white/80 dark:bg-[#161616]/95 border border-slate-200/60 dark:border-white/[0.04] rounded-app-lg p-6 shadow-md hover:shadow-xl hover:shadow-[#B58863]/[0.03] hover:border-slate-300 dark:hover:border-[#B58863]/30 transition-all duration-300;
+  }
+
+  .panel {
+    @apply bg-white/90 dark:bg-[#161616]/90 border border-slate-200/60 dark:border-white/[0.03] rounded-app shadow-sm;
+  }
+
+  /* Glass buttons & elements */
+  .glass-btn-primary {
+    @apply bg-gradient-to-r from-[#B58863] to-[#B58863]/90 hover:from-[#c49874] hover:to-[#B58863] text-[#161616] font-semibold py-2.5 px-5 rounded-xl border border-[#D3C3B9]/20 shadow-lg shadow-[#B58863]/20 active:scale-[0.98] transition-all duration-200;
+  }
+
+  .glass-btn-secondary {
+    @apply bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-[rgb(var(--color-text-primary))] font-semibold py-2.5 px-5 rounded-xl border border-slate-200/50 dark:border-white/10 shadow-sm active:scale-[0.98] transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .transition-theme {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* GPU-Accelerated Performance Keyframes */
+  @keyframes grid-drift {
+    0% { background-position: 0 0; }
+    100% { background-position: 4rem 4rem; }
+  }
+
+  @keyframes shiny-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes reveal-fade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Performance Kinetic Classes */
+  .animated-grid-overlay {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    animation: grid-drift 40s linear infinite;
+  }
+
+  .shiny-text {
+    background: linear-gradient(120deg, rgba(211,195,185,0.7) 30%, rgba(181,136,99,1) 50%, rgba(211,195,185,0.7) 70%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shiny-shimmer 6s infinite linear;
+  }
+
+  .reveal-animation {
+    animation: reveal-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+/* Custom ultra-thin minimal scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(167, 158, 156, 0.15);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(181, 136, 99, 0.3);
+}
+
+/* Light mode overrides for DocsPage */
+:root:not(.dark) .docs-page-root {
+  background-color: rgb(241, 245, 249) !important;
+  color: rgb(15, 23, 42) !important;
+}
+
+:root:not(.dark) .docs-page-root header {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+:root:not(.dark) .docs-page-root header h1 {
+  color: rgb(15, 23, 42) !important;
+}
+
+:root:not(.dark) .docs-page-root header input {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: rgb(15, 23, 42) !important;
+}
+
+:root:not(.dark) .docs-page-root header input::placeholder {
+  color: rgb(100, 116, 139) !important;
+}
+
+:root:not(.dark) .docs-page-root main {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(226, 232, 240, 1) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Base Typographical Elements */
+:root:not(.dark) .docs-page-root h2,
+:root:not(.dark) .docs-page-root h3,
+:root:not(.dark) .docs-page-root h4,
+:root:not(.dark) .docs-page-root h5,
+:root:not(.dark) .docs-page-root strong {
+  color: rgb(15, 23, 42) !important;
+}
+
+:root:not(.dark) .docs-page-root p,
+:root:not(.dark) .docs-page-root li,
+:root:not(.dark) .docs-page-root td {
+  color: rgb(71, 85, 105) !important;
+}
+
+/* Specific Class-based Color Mapping */
+:root:not(.dark) .docs-page-root .text-white {
+  color: rgb(15, 23, 42) !important;
+}
+:root:not(.dark) .docs-page-root .text-slate-100 {
+  color: rgb(15, 23, 42) !important;
+}
+:root:not(.dark) .docs-page-root .text-slate-200 {
+  color: rgb(51, 65, 85) !important;
+}
+:root:not(.dark) .docs-page-root .text-slate-300 {
+  color: rgb(71, 85, 105) !important;
+}
+:root:not(.dark) .docs-page-root .text-slate-400 {
+  color: rgb(100, 116, 139) !important;
+}
+:root:not(.dark) .docs-page-root .text-slate-500 {
+  color: rgb(71, 85, 105) !important; /* Mapped from slate-400 to slate-600 for contrast */
+}
+
+/* Accent Contrast Optimization */
+:root:not(.dark) .docs-page-root .text-emerald-400 {
+  color: rgb(4, 120, 87) !important; /* Mapped to emerald-700 (darker green) for light mode contrast */
+}
+:root:not(.dark) .docs-page-root .text-amber-400 {
+  color: rgb(180, 83, 9) !important; /* Mapped to amber-700 (darker amber) for light mode contrast */
+}
+:root:not(.dark) .docs-page-root .text-red-400 {
+  color: rgb(185, 28, 28) !important; /* Mapped to red-700 (darker red) for light mode contrast */
+}
+
+/* Brand Copper Colors Optimization for Light Mode */
+:root:not(.dark) .docs-page-root [class~="text-[#B58863]"] {
+  color: rgb(138, 79, 33) !important; /* Darker copper text for readability */
+}
+:root:not(.dark) .docs-page-root [class~="bg-[#B58863]/10"] {
+  background-color: rgba(181, 136, 99, 0.15) !important; /* slightly higher opacity gold background */
+}
+:root:not(.dark) .docs-page-root [class~="border-[#B58863]/20"] {
+  border-color: rgba(181, 136, 99, 0.3) !important; /* slightly darker gold border */
+}
+
+/* Pro-Tip Alert Box Styling */
+:root:not(.dark) .docs-page-root [class~="bg-emerald-500/5"] {
+  background-color: rgba(16, 185, 129, 0.08) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Unselected tab button hover overrides in light mode */
+:root:not(.dark) .docs-page-root [class~="bg-black/40"] button:not([class~="bg-[#B58863]"]):hover,
+:root:not(.dark) .docs-page-root button[class~="text-slate-400"]:hover {
+  color: rgb(15, 23, 42) !important;
+}
+
+/* Border overrides */
+:root:not(.dark) .docs-page-root [class~="border-white/[0.04]"],
+:root:not(.dark) .docs-page-root [class~="border-white/10"],
+:root:not(.dark) .docs-page-root hr,
+:root:not(.dark) .docs-page-root [class~="border-white/5"] {
+  border-color: rgba(226, 232, 240, 1) !important;
+}
+
+/* Background panel maps */
+:root:not(.dark) .docs-page-root [class~="bg-white/5"] {
+  background-color: rgba(241, 245, 249, 0.7) !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-white/10"] {
+  background-color: rgba(226, 232, 240, 0.8) !important;
+  border-color: rgba(203, 213, 225, 0.5) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/20"] {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+/* Make Scenario Goals & Blueprint controllers clean Light Mode containers */
+:root:not(.dark) .docs-page-root [class~="bg-black/30"] {
+  background-color: rgba(241, 245, 249, 0.7) !important;
+  border-color: rgba(226, 232, 240, 1) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/40"] {
+  background-color: rgba(226, 232, 240, 0.8) !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+
+/* Tab buttons inside scenario selection and dictionary filtering */
+:root:not(.dark) .docs-page-root [class~="bg-black/40"] button {
+  color: rgb(71, 85, 105) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/40"] button:hover {
+  color: rgb(15, 23, 42) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/40"] button[class~="bg-[#B58863]"],
+:root:not(.dark) .docs-page-root [class~="bg-black/40"] button[class~="bg-slate-700"],
+:root:not(.dark) .docs-page-root button[class~="bg-[#B58863]"] {
+  background-color: rgb(181, 136, 99) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+/* Monospace sequence maps and terminal logs (Keep them dark styled for contrast) */
+:root:not(.dark) .docs-page-root [class~="bg-black/60"],
+:root:not(.dark) .docs-page-root [class~="bg-black/80"] {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: rgba(15, 23, 42, 1) !important;
+}
+
+/* Revert text colors back to bright colors inside console logs / sequence flow maps */
+:root:not(.dark) .docs-page-root [class~="bg-black/60"] .text-white,
+:root:not(.dark) .docs-page-root [class~="bg-black/80"] .text-white {
+  color: rgb(255, 255, 255) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/60"] [class~="text-slate-300"],
+:root:not(.dark) .docs-page-root [class~="bg-black/80"] [class~="text-slate-300"] {
+  color: rgb(203, 213, 225) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/60"] [class~="text-slate-400"],
+:root:not(.dark) .docs-page-root [class~="bg-black/80"] [class~="text-slate-400"] {
+  color: rgb(148, 163, 184) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/60"] [class~="text-emerald-400"],
+:root:not(.dark) .docs-page-root [class~="bg-black/80"] [class~="text-emerald-400"] {
+  color: rgb(52, 211, 153) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/60"] [class~="text-amber-400"],
+:root:not(.dark) .docs-page-root [class~="bg-black/80"] [class~="text-amber-400"] {
+  color: rgb(251, 191, 36) !important;
+}
+:root:not(.dark) .docs-page-root [class~="bg-black/60"] [class~="text-red-400"],
+:root:not(.dark) .docs-page-root [class~="bg-black/80"] [class~="text-red-400"] {
+  color: rgb(248, 113, 113) !important;
+}
+
+/* Sidebar navigation buttons */
+:root:not(.dark) .docs-page-root aside button:not([class~="bg-[#B58863]/10"]) {
+  color: rgb(100, 116, 139) !important;
+}
+:root:not(.dark) .docs-page-root aside button:not([class~="bg-[#B58863]/10"]):hover {
+  background-color: rgba(226, 232, 240, 0.5) !important;
+  color: rgb(15, 23, 42) !important;
+}
+
+/* Drifting grid overlay */
+:root:not(.dark) .docs-page-root .animated-grid-overlay {
+  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px) !important;
+}
+
+/* Interactive topology node boxes override in light mode */
+:root:not(.dark) .docs-page-root [class~="bg-[#10232A]"] {
+  background-color: rgb(255, 255, 255) !important;
+  border-color: rgba(226, 232, 240, 1) !important;
+}
+
+/* Inactive connection paths inside interactive SVGs */
+:root:not(.dark) .docs-page-root svg *[stroke="rgba(255,255,255,0.06)"] {
+  stroke: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Enforce strict max-height bounds on terminal log consoles to prevent infinite expansion */
+.docs-page-root [class~="h-28"] {
+  max-height: 7rem !important;
+}
+.docs-page-root [class~="h-32"] {
+  max-height: 8rem !important;
+}
+.docs-page-root [class~="h-36"] {
+  max-height: 9rem !important;
+}

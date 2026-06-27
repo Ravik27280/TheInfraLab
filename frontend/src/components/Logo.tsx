@@ -1,0 +1,85 @@
+import React from 'react';
+
+interface LogoProps extends React.SVGProps<SVGSVGElement> {
+    className?: string;
+}
+
+export const Logo: React.FC<LogoProps> = ({ className = "w-8 h-8", ...props }) => {
+    return (
+        <svg 
+            viewBox="0 0 100 100" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg" 
+            className={className}
+            {...props}
+        >
+            <defs>
+                {/* Gradient for Top Layer (Presentation/Gateway) */}
+                <linearGradient id="layerTopGrad" x1="26" y1="13" x2="74" y2="37" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#38BDF8" /> {/* Sky blue */}
+                    <stop offset="100%" stopColor="#0EA5E9" />
+                </linearGradient>
+                
+                {/* Gradient for Middle Layer (Services/Logic) */}
+                <linearGradient id="layerMidGrad" x1="26" y1="38" x2="74" y2="62" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#818CF8" /> {/* Indigo */}
+                    <stop offset="100%" stopColor="#6366F1" />
+                </linearGradient>
+
+                {/* Gradient for Bottom Layer (Database/Storage) */}
+                <linearGradient id="layerBotGrad" x1="26" y1="63" x2="74" y2="87" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#F59E0B" /> {/* Amber */}
+                    <stop offset="100%" stopColor="#B58863" /> {/* Copper */}
+                </linearGradient>
+
+                {/* Gradient for Glowing Data Flow Path */}
+                <linearGradient id="pathGrad" x1="26" y1="25" x2="50" y2="75" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#38BDF8" />
+                    <stop offset="50%" stopColor="#818CF8" />
+                    <stop offset="100%" stopColor="#F59E0B" />
+                </linearGradient>
+
+                {/* Glow Filter */}
+                <filter id="logoGlow" x="-25%" y="-25%" width="150%" height="150%">
+                    <feGaussianBlur stdDeviation="1.5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+            </defs>
+
+            {/* Bottom Layer Plane (Database Layer) */}
+            <polygon points="50,63 74,75 50,87 26,75" fill="#111C20" fillOpacity="0.25" stroke="url(#layerBotGrad)" strokeWidth="2.2" strokeLinejoin="round" />
+
+            {/* Middle Layer Plane (Logic Layer) */}
+            <polygon points="50,38 74,50 50,62 26,50" fill="#111C20" fillOpacity="0.25" stroke="url(#layerMidGrad)" strokeWidth="2.2" strokeLinejoin="round" />
+
+            {/* Top Layer Plane (Gateway/Router Layer) */}
+            <polygon points="50,13 74,25 50,37 26,25" fill="#111C20" fillOpacity="0.25" stroke="url(#layerTopGrad)" strokeWidth="2.2" strokeLinejoin="round" />
+
+            {/* Vertical Support Pillars (Isometric grid guide lines) */}
+            <line x1="26" y1="25" x2="26" y2="75" stroke="currentColor" strokeWidth="1" strokeDasharray="2.5 2.5" strokeOpacity="0.22" />
+            <line x1="74" y1="25" x2="74" y2="75" stroke="currentColor" strokeWidth="1" strokeDasharray="2.5 2.5" strokeOpacity="0.22" />
+            <line x1="50" y1="13" x2="50" y2="63" stroke="currentColor" strokeWidth="1" strokeDasharray="2.5 2.5" strokeOpacity="0.22" />
+
+            {/* Glowing Interconnected Data Path */}
+            <g stroke="url(#pathGrad)" strokeLinecap="round" strokeLinejoin="round">
+                {/* Top-left node down through middle-left to middle-right, down to bottom center */}
+                <path d="M 26 25 L 26 50 L 50 50 L 74 50 L 74 75 L 50 75" strokeWidth="3" filter="url(#logoGlow)" />
+                {/* Winding guide trunk */}
+                <path d="M 50 25 L 50 50 L 50 75" strokeWidth="1.2" strokeDasharray="3 3" strokeOpacity="0.4" />
+            </g>
+
+            {/* Glowing Network Nodes (Infrastructure components) */}
+            {/* Input Node (Top Left) */}
+            <circle cx="26" cy="25" r="4.5" fill="#38BDF8" stroke="currentColor" strokeWidth="1" filter="url(#logoGlow)" />
+            
+            {/* Processing Node (Middle Center) */}
+            <circle cx="50" cy="50" r="4.5" fill="#818CF8" stroke="currentColor" strokeWidth="1" filter="url(#logoGlow)" />
+            
+            {/* Logic Node (Middle Right) */}
+            <circle cx="74" cy="50" r="4.5" fill="#6366F1" stroke="currentColor" strokeWidth="1" filter="url(#logoGlow)" />
+            
+            {/* Data Node (Bottom Center) */}
+            <circle cx="50" cy="75" r="4.5" fill="#F59E0B" stroke="currentColor" strokeWidth="1" filter="url(#logoGlow)" />
+        </svg>
+    );
+};
