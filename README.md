@@ -22,9 +22,16 @@ Built with **React, TypeScript, Node.js, Express, and MongoDB**, it features a d
 > [!NOTE]
 > *Add your workspace screenshots and demo GIFs here to show off the user interface!*
 
-| 🖥️ Custom Design Canvas | 🤖 AI Evaluation Report |
+| 🖥️ Custom Design Canvas 
 | :---: | :---: |
-| ![Workspace Canvas Placeholder](https://via.placeholder.com/600x350?text=Interactive+React+Flow+Canvas) | ![AI Report Placeholder](https://via.placeholder.com/600x350?text=AI+Evaluation+Feedback+Panel) |
+
+| <img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/54ad8fc4-f323-4d6d-bb79-3b44bbddb698" /> 
+
+| 🤖 AI Evaluation Report |
+| :---: | :---: |
+
+| <img width="402" height="795" alt="image" src="https://github.com/user-attachments/assets/0125730f-dcaa-4b2c-9328-db931afabc22" />
+|
 
 ---
 
