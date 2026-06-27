@@ -1,6 +1,6 @@
 # 🎨 Infralab — Interactive System Design Workspace & Evaluation Lab
 
-🔗 **[Live Interactive Demo](https://your-deployed-site.com)**
+🔗 **[Live Interactive Demo](https://theinfralab.com/)**
 
 
 Infralab is a premium, interactive SaaS platform designed to help engineers practice, simulate, and receive AI-driven feedback on system design architectures. 
